@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.scrollcontainer {
+  /* margin: 0 auto; */
+  /* height: 10em;
+  width: auto; */
+  /* border: 1px solid #ccc; */
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
+
+  --background-color: rgba(255, 255, 255, 1);
+  --shadow-color: rgba(34, 34, 34, 0.5);
+  --shadow-size: 0.75em;
+  --transparent: rgba(255, 255, 255, 0);
+}
+/* .scrollcontainer::-webkit-scrollbar {
+  display: none;
+} */
+
+@supports (-webkit-overflow-scrolling: touch) {
+  @keyframes dummy {
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .scrollcontainer {
+    animation: dummy 1s linear infinite;
+  }
+}
+
+.scrollcontainer__content {
+  padding: 0 1em;
+  text-align: left;
+}
+
+.scrollcontainer--vertical {
+  overflow-y: scroll;
+
+  background: linear-gradient(
+      var(--background-color),
+      var(--background-color),
+      var(--transparent) calc(var(--shadow-size) * 2)
+    ),
+    radial-gradient(
+      farthest-side at 50% 0,
+      var(--shadow-color),
+      var(--transparent)
+    ),
+    linear-gradient(
+      to top,
+      var(--background-color),
+      var(--background-color),
+      var(--transparent) calc(var(--shadow-size) * 2)
+    ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        var(--shadow-color),
+        var(--transparent)
+      )
+      0 100%;
+  background-color: var(--background-color);
+  background-repeat: no-repeat;
+  background-attachment: local, scroll, local, scroll;
+  background-size: 100% 100%, 100% var(--shadow-size), 100% 100%,
+    100% var(--shadow-size);
+}
+
+.scrollcontainer--horizontal {
+  overflow-x: scroll;
+
+  background: linear-gradient(
+      to right,
+      var(--background-color),
+      var(--background-color),
+      var(--transparent) calc(var(--shadow-size) * 2)
+    ),
+    radial-gradient(
+      farthest-side at 0 50%,
+      var(--shadow-color),
+      var(--transparent)
+    ),
+    linear-gradient(
+      to left,
+      var(--background-color),
+      var(--background-color),
+      var(--transparent) calc(var(--shadow-size) * 2)
+    ),
+    radial-gradient(
+        farthest-side at 100% 50%,
+        var(--shadow-color),
+        var(--transparent)
+      )
+      100%;
+  background-color: var(--background-color);
+  background-repeat: no-repeat;
+  background-attachment: local, scroll, local, scroll;
+  background-size: 100% 100%, var(--shadow-size) 100%, 100% 100%,
+    var(--shadow-size) 100%;
+  height: 100%;
+}
+
+.scrollcontainer--horizontal .scrollcontainer__content {
+  white-space: nowrap;
+}
